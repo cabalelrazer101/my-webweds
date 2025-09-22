@@ -22,7 +22,7 @@
   
   <!-- Hero with video -->
   <section id="hero" class="hero">
-    <video autoplay loop muted playsinline>
+    <video id="hero-video" loop muted playsinline>
       <source src="https://res.cloudinary.com/dcytvgwj7/video/upload/v1758567098/main_visual_15s_c7fqxd.mp4" type="video/mp4">
     </video>
     <div class="hero-content wedding-intro">
@@ -45,69 +45,46 @@
       <button class="prev" aria-label="Previous slide">❮</button>
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story1_dhugja.jpg" alt="1"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story2_fkscxw.jpg" alt="2"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story3_wgbygb.jpg" alt="3"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story4_mlqfv5.jpg" alt="4"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story5_chlfkf.jpg" alt="5"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567036/story6_smwwgn.jpg" alt="6"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/story7_ravxnj.jpg" alt="7"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/story8_lumdsa.jpg" alt="8"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/story9_e9tyqj.jpg" alt="9"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story10_fizg7r.jpg" alt="10"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story11_xon6ff.jpg" alt="11"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story12_ikcqva.jpg" alt="12"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story13_it6mxf.jpg" alt="13"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story14_rz0adw.jpg" alt="14"></div>
-          <div class="carousel-slide"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story15_apjyvg.jpg" alt="15"></div>
+          <div class="carousel-slide" data-caption="Our First Date 💕"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story1_dhugja.jpg" alt="1"></div>
+          <div class="carousel-slide" data-caption="Beach Day 🌊"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story2_fkscxw.jpg" alt="2"></div>
+          <div class="carousel-slide" data-caption="Hiking Adventure ⛰️"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story3_wgbygb.jpg" alt="3"></div>
+          <!-- Add remaining slides here with data-caption -->
         </div>
       </div>
       <button class="next" aria-label="Next slide">❯</button>
     </div>
 
-    <!-- Optional small caption under carousel (you can change per-slide later) -->
     <div class="carousel-caption" id="carousel-caption">Our First Date 💕</div>
   </section>
 
   <!-- Wedding Details -->
-<section id="details" class="details">
-  <h2>Wedding Details</h2>
-  <div class="details-grid">
-    <div class="detail-card">
-      <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail1_huwha5.jpg" alt="Ceremony" onclick="openLightbox(this)">
-      <p>📍 Ceremony<br>
-      Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite</p>
+  <section id="details" class="details">
+    <h2>Wedding Details</h2>
+    <div class="details-grid">
+      <div class="detail-card">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail1_huwha5.jpg" alt="Ceremony" onclick="openLightbox(this)">
+        <p>📍 Ceremony<br>Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail2_ht7m1k.jpg" alt="Reception" onclick="openLightbox(this)">
+        <p>🎉 Reception<br>Patioa Lazaro</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail3_tsh6og.jpg" alt="Time" onclick="openLightbox(this)">
+        <p>🕓 4:00 PM<br>December 6, 2025</p>
+      </div>
+      <div class="detail-card">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg" alt="Dress Code" onclick="openLightbox(this)">
+        <p>👗 Dress Code<br>Formal Attire</p>
+      </div>
     </div>
-    <div class="detail-card">
-      <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail2_ht7m1k.jpg" alt="Reception" onclick="openLightbox(this)">
-      <p>🎉 Reception<br>
-      Patioa Lazaro</p>
-    </div>
-    <div class="detail-card">
-      <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail3_tsh6og.jpg" alt="Time" onclick="openLightbox(this)">
-      <p>🕓 4:00 PM<br>
-      December 6, 2025</p>
-    </div>
-    <div class="detail-card">
-      <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg" alt="Dress Code" onclick="openLightbox(this)">
-      <p>👗 Dress Code<br>
-      Formal Attire</p>
-    </div>
-     <div class="detail-card">
-      <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail5_kinxzt.jpg" alt="Dress Code" onclick="openLightbox(this)">
-      <p>👗 Dress Code<br>
-      Formal Attire</p>
-    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
   </div>
-</section>
-
-<!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <span class="close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
-</div>
-
-
 
   <!-- RSVP Placeholder -->
   <section id="rsvp" class="rsvp">
@@ -176,17 +153,21 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Audio Controls
+    // Audio & Video Enable Overlay
     const audio = document.getElementById("page-bgm-pc");
-    const playBtn = document.querySelector(".btn-player-status");
+    const video = document.getElementById("hero-video");
     const overlay = document.getElementById("audio-overlay");
     const enableBtn = document.getElementById("enable-audio-btn");
+    const playBtn = document.querySelector(".btn-player-status");
 
     enableBtn.addEventListener("click", () => {
-      audio.play().then(() => {
-        overlay.style.display = "none";
-        if (playBtn) playBtn.textContent = "⏸️";
-      }).catch(()=>{ /* autoplay blocked */ });
+      video.muted = false;
+      Promise.all([video.play(), audio.play()])
+        .then(() => {
+          overlay.style.display = "none";
+          if (playBtn) playBtn.textContent = "⏸️";
+        })
+        .catch(err => console.log("Playback failed:", err));
     });
 
     if (playBtn) {
@@ -201,109 +182,91 @@
       });
     }
 
-
-    
-    // Filmstrip Carousel
-    (function() {
-  const container = document.querySelector('.carousel-container');
-  const viewport = document.querySelector('.carousel-viewport');
-  const track = document.querySelector('.carousel-track');
-  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-  const prevBtn = document.querySelector('.prev');
-  const nextBtn = document.querySelector('.next');
-  const captionEl = document.getElementById('carousel-caption');
-
-  if (!container || slides.length === 0) return;
-
-  let gap = parseFloat(getComputedStyle(track).gap) || 20;
-  let currentIndex = 0;
-  let autoplayTimer = null;
-  const AUTOPLAY_MS = 5000;
-
-  function getSlideNaturalWidth(slide) {
-    // Use first image width, ignoring CSS transform scaling
-    const img = slide.querySelector('img');
-    return img ? img.naturalWidth * (slide.clientHeight / img.naturalHeight) : slide.clientWidth;
-  }
-
-  function updateCarousel() {
-    // mark active/inactive slides
-    slides.forEach((s, i) => {
-      s.classList.toggle('active', i === currentIndex);
-      s.style.opacity = (i === currentIndex) ? '1' : '0.5';
-      s.style.transform = (i === currentIndex) ? 'scale(1)' : 'scale(0.85)';
-      s.style.zIndex = (i === currentIndex) ? 2 : 1;
-    });
-
-    // compute offset based on unscaled widths
-    let sum = 0;
-    for (let i = 0; i < currentIndex; i++) {
-      sum += slides[i].offsetWidth + gap; // offsetWidth is before transform scaling
+    // Lightbox functions
+    function openLightbox(imgElement) {
+      document.getElementById("lightbox").style.display = "block";
+      document.getElementById("lightbox-img").src = imgElement.src;
     }
 
-    const containerWidth = viewport.clientWidth;
-    const currentWidth = slides[currentIndex].offsetWidth;
-    const offset = (containerWidth / 2) - (currentWidth / 2) - sum;
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
 
-    track.style.transform = `translateX(${offset}px)`;
+    // Filmstrip Carousel
+    (function() {
+      const container = document.querySelector('.carousel-container');
+      const viewport = document.querySelector('.carousel-viewport');
+      const track = document.querySelector('.carousel-track');
+      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+      const captionEl = document.getElementById('carousel-caption');
 
-    // update caption (if using data-caption)
-    const dataCap = slides[currentIndex].dataset.caption;
-    if (captionEl) captionEl.textContent = dataCap || '';
-  }
+      if (!container || slides.length === 0) return;
 
-  function moveSlide(direction) {
-    currentIndex = (currentIndex + direction + slides.length) % slides.length;
-    updateCarousel();
-  }
+      let gap = parseFloat(getComputedStyle(track).gap) || 20;
+      let currentIndex = 0;
+      let autoplayTimer = null;
+      const AUTOPLAY_MS = 5000;
 
-  prevBtn.addEventListener('click', () => { moveSlide(-1); resetAutoplay(); });
-  nextBtn.addEventListener('click', () => { moveSlide(1); resetAutoplay(); });
+      function updateCarousel() {
+        slides.forEach((s, i) => {
+          s.classList.toggle('active', i === currentIndex);
+          s.style.opacity = (i === currentIndex) ? '1' : '0.5';
+          s.style.transform = (i === currentIndex) ? 'scale(1)' : 'scale(0.85)';
+          s.style.zIndex = (i === currentIndex) ? 2 : 1;
+        });
 
-  // autoplay handling
-  function startAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(() => moveSlide(1), AUTOPLAY_MS);
-  }
-  function resetAutoplay() { startAutoplay(); }
+        let sum = 0;
+        for (let i = 0; i < currentIndex; i++) {
+          sum += slides[i].offsetWidth + gap;
+        }
 
-  window.addEventListener('resize', () => {
-    gap = parseFloat(getComputedStyle(track).gap) || gap;
-    updateCarousel();
-  });
+        const containerWidth = viewport.clientWidth;
+        const currentWidth = slides[currentIndex].offsetWidth;
+        const offset = (containerWidth / 2) - (currentWidth / 2) - sum;
+        track.style.transform = `translateX(${offset}px)`;
 
- function openLightbox(imgElement) {
-    document.getElementById("lightbox").style.display = "block";
-    document.getElementById("lightbox-img").src = imgElement.src;
-  }
+        const dataCap = slides[currentIndex].dataset.caption;
+        if (captionEl) captionEl.textContent = dataCap || '';
+      }
 
-  function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-  }
+      function moveSlide(direction) {
+        currentIndex = (currentIndex + direction + slides.length) % slides.length;
+        updateCarousel();
+      }
 
+      prevBtn.addEventListener('click', () => { moveSlide(-1); resetAutoplay(); });
+      nextBtn.addEventListener('click', () => { moveSlide(1); resetAutoplay(); });
 
-  // wait for images to load
-  const imgs = track.querySelectorAll('img');
-  let loaded = 0;
-  imgs.forEach(img => {
-    if (img.complete) loaded++;
-    else img.addEventListener('load', () => {
-      loaded++;
+      function startAutoplay() {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(() => moveSlide(1), AUTOPLAY_MS);
+      }
+      function resetAutoplay() { startAutoplay(); }
+
+      window.addEventListener('resize', () => {
+        gap = parseFloat(getComputedStyle(track).gap) || gap;
+        updateCarousel();
+      });
+
+      const imgs = track.querySelectorAll('img');
+      let loaded = 0;
+      imgs.forEach(img => {
+        if (img.complete) loaded++;
+        else img.addEventListener('load', () => {
+          loaded++;
+          if (loaded === imgs.length) {
+            updateCarousel();
+            startAutoplay();
+          }
+        });
+      });
       if (loaded === imgs.length) {
         updateCarousel();
         startAutoplay();
       }
-    });
-  });
-  if (loaded === imgs.length) {
-    updateCarousel();
-    startAutoplay();
-  }
     })();
-
-
-
   </script>
 </body>
-
 </html>

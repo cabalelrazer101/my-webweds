@@ -6,8 +6,80 @@
   <title>Reychel & Lando - Our Wedding</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff url('https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567030/wedding_loading_bg.jpg') center center no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+    .loading-overlay p {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+
+    /* Hero Video */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Enable Audio Overlay */
+    .audio-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      flex-direction: column;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+    .audio-overlay button {
+      padding: 10px 25px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background: #f5c518;
+      color: #333;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567031/rings_icon.png" alt="Rings" width="100">
+    <p>Loading our special day...</p>
+  </div>
 
   <!-- Sticky Navbar -->
   <header class="navbar">
@@ -22,7 +94,7 @@
   
   <!-- Hero with video -->
   <section id="hero" class="hero">
-    <video id="hero-video" loop muted playsinline>
+    <video id="hero-video" loop muted playsinline preload="auto" class="hero-video">
       <source src="https://res.cloudinary.com/dcytvgwj7/video/upload/v1758567098/main_visual_15s_c7fqxd.mp4" type="video/mp4">
     </video>
     <div class="hero-content wedding-intro">
@@ -53,7 +125,6 @@
       </div>
       <button class="next" aria-label="Next slide">❯</button>
     </div>
-
     <div class="carousel-caption" id="carousel-caption">Our First Date 💕</div>
   </section>
 
@@ -124,6 +195,13 @@
 
   <!-- Scripts -->
   <script>
+    const video = document.getElementById("hero-video");
+    const audio = document.getElementById("page-bgm-pc");
+    const overlay = document.getElementById("audio-overlay");
+    const enableBtn = document.getElementById("enable-audio-btn");
+    const playBtn = document.querySelector(".btn-player-status");
+    const loadingOverlay = document.getElementById("loading-overlay");
+
     // Countdown Timer
     const weddingDate = new Date("December 6, 2025 16:00:00").getTime();
     const countdownEl = document.getElementById("countdown");
@@ -153,13 +231,14 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Audio & Video Enable Overlay
-    const audio = document.getElementById("page-bgm-pc");
-    const video = document.getElementById("hero-video");
-    const overlay = document.getElementById("audio-overlay");
-    const enableBtn = document.getElementById("enable-audio-btn");
-    const playBtn = document.querySelector(".btn-player-status");
+    // Wait for video to load
+    video.addEventListener('canplaythrough', () => {
+      loadingOverlay.style.display = 'none';
+      video.play().catch(()=>{}); // play muted for background
+    });
+    video.load();
 
+    // Enable Audio & Unmute Video
     enableBtn.addEventListener("click", () => {
       video.muted = false;
       Promise.all([video.play(), audio.play()])
@@ -187,7 +266,6 @@
       document.getElementById("lightbox").style.display = "block";
       document.getElementById("lightbox-img").src = imgElement.src;
     }
-
     function closeLightbox() {
       document.getElementById("lightbox").style.display = "none";
     }

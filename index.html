@@ -10,10 +10,8 @@
     /* Loading Overlay */
     .loading-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: #fff url('https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567030/wedding_loading_bg.jpg') center center no-repeat;
       background-size: cover;
       display: flex;
@@ -25,52 +23,56 @@
       color: #fff;
       text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
     }
-    .loading-overlay p {
-      font-size: 2rem;
-      margin-top: 20px;
-    }
+    .loading-overlay p { font-size: 2rem; margin-top: 20px; }
 
     /* Hero Video */
-    .hero-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .hero {
-      position: relative;
-      overflow: hidden;
-    }
+    .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+    .hero { position: relative; overflow: hidden; }
 
     /* Enable Audio Overlay */
     .audio-overlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      flex-direction: column;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      text-align: center;
+      display: flex; justify-content: center; align-items: center;
+      z-index: 10000; flex-direction: column;
+      font-family: 'Montserrat', sans-serif; color: #fff; text-align: center;
     }
     .audio-overlay button {
-      padding: 10px 25px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 5px;
-      background: #f5c518;
-      color: #333;
-      cursor: pointer;
-      margin-top: 15px;
-      font-weight: 600;
+      padding: 10px 25px; font-size: 1.2rem; border: none; border-radius: 5px;
+      background: #f5c518; color: #333; cursor: pointer; margin-top: 15px; font-weight: 600;
     }
+
+    /* Lightbox Fullscreen (small adjustments here so it matches the rest of the site) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 11000;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center;
+      flex-direction: column;
+      animation: fadeIn 0.3s ease;
+    }
+    .lightbox img {
+      max-width: 90%; max-height: 70%;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      transform: scale(0.8);
+      animation: zoomIn 0.3s ease forwards;
+    }
+    .lightbox-caption {
+      color: #fff; margin-top: 15px;
+      font-size: 1.2rem; text-align: center; font-style: italic;
+    }
+    .lightbox .close {
+      position: absolute; top: 25px; right: 35px;
+      font-size: 2rem; color: #fff; cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .lightbox .close:hover { transform: scale(1.15); }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes zoomIn { from {transform: scale(0.8);} to {transform: scale(1);} }
   </style>
 </head>
 <body>
@@ -110,17 +112,28 @@
     </div>
   </section>
 
-  <!-- Our Story with Filmstrip Carousel -->
+  <!-- Our Story with Filmstrip Carousel (slides 1..15 included) -->
   <section id="story" class="story">
     <h2>Our Story</h2>
     <div class="carousel-container">
       <button class="prev" aria-label="Previous slide">❮</button>
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide" data-caption="Our First Date 💕"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story1_dhugja.jpg" alt="1"></div>
-          <div class="carousel-slide" data-caption="Beach Day 🌊"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story2_fkscxw.jpg" alt="2"></div>
-          <div class="carousel-slide" data-caption="Hiking Adventure ⛰️"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story3_wgbygb.jpg" alt="3"></div>
-          <!-- Add remaining slides here with data-caption -->
+          <div class="carousel-slide" data-caption="Our First Date 💕"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story1_dhugja.jpg" alt="Story 1"></div>
+          <div class="carousel-slide" data-caption="Proposal 💍"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story2_fkscxw.jpg" alt="Story 2"></div>
+          <div class="carousel-slide" data-caption="City Adventure ⛰️"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story3_wgbygb.jpg" alt="Story 3"></div>
+          <div class="carousel-slide" data-caption="Road Trip 💖"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story4_mlqfv5.jpg" alt="Story 4"></div>
+          <div class="carousel-slide" data-caption="Enjoying Nature 📸"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story5_chlfkf.jpg" alt="Story 5"></div>
+          <div class="carousel-slide" data-caption="Calm Day 🎶"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567036/story6_smwwgn.jpg" alt="Story 6"></div>
+          <div class="carousel-slide" data-caption="Coffee Dates ☕"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/story7_ravxnj.jpg" alt="Story 7"></div>
+          <div class="carousel-slide" data-caption="Sunset City Lights 🌅"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/story8_lumdsa.jpg" alt="Story 8"></div>
+          <div class="carousel-slide" data-caption="Surprise !! 💍"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/story9_e9tyqj.jpg" alt="Story 9"></div>
+          <div class="carousel-slide" data-caption="Fun Day 🎓"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567027/story10_fizg7r.jpg" alt="Story 10"></div>
+          <div class="carousel-slide" data-caption="Somewhere Out There 🍳"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story11_xon6ff.jpg" alt="Story 11"></div>
+          <div class="carousel-slide" data-caption="Relax 🎤"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567028/story12_ikcqva.jpg" alt="Story 12"></div>
+          <div class="carousel-slide" data-caption="Nature Vibes💍"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story13_it6mxf.jpg" alt="Story 13"></div>
+          <div class="carousel-slide" data-caption="Engagement Shoot 📸"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story14_rz0adw.jpg" alt="Story 14"></div>
+          <div class="carousel-slide" data-caption="Looking forward to forever 💖"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story15_apjyvg.jpg" alt="Story 15"></div>
         </div>
       </div>
       <button class="next" aria-label="Next slide">❯</button>
@@ -128,33 +141,43 @@
     <div class="carousel-caption" id="carousel-caption">Our First Date 💕</div>
   </section>
 
-  <!-- Wedding Details -->
+  <!-- Wedding Details (5 images now included) -->
   <section id="details" class="details">
     <h2>Wedding Details</h2>
     <div class="details-grid">
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail1_huwha5.jpg" alt="Ceremony" onclick="openLightbox(this)">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail1_huwha5.jpg" alt="Ceremony"
+             onclick="openLightbox(this, '📍 Ceremony - Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite')">
         <p>📍 Ceremony<br>Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite</p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail2_ht7m1k.jpg" alt="Reception" onclick="openLightbox(this)">
-        <p>🎉 Reception<br>Patioa Lazaro</p>
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail2_ht7m1k.jpg" alt="Reception"
+             onclick="openLightbox(this, '🎉 Reception - Patio Lazaro')">
+        <p>🎉 Reception<br>Patio Lazaro</p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail3_tsh6og.jpg" alt="Time" onclick="openLightbox(this)">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail3_tsh6og.jpg" alt="Time"
+             onclick="openLightbox(this, '🕓 4:00 PM, December 6, 2025')">
         <p>🕓 4:00 PM<br>December 6, 2025</p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg" alt="Dress Code" onclick="openLightbox(this)">
-        <p>👗 Dress Code<br>Formal Attire</p>
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg"" alt="Dress Code"
+             onclick="openLightbox(this, '💕 The Entourage ')">
+        <p>💕 The Entourage <br></p>
+      </div>
+      <div class="detail-card">
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail5_kinxzt.jpg" alt="Accommodations"
+             onclick="openLightbox(this, '👗 Dress Code - Formal Attire')">
+        <p><br>👗 Dress Code - Formal Attire </p>
       </div>
     </div>
   </section>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
+  <!-- Lightbox (fullscreen animated) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="close" onclick="closeLightbox()">✖</span>
+    <img id="lightbox-img" alt="Zoomed detail">
+    <p id="lightbox-caption" class="lightbox-caption"></p>
   </div>
 
   <!-- RSVP Placeholder -->
@@ -185,7 +208,7 @@
     </div>
   </div>
 
-  <!-- Overlay asking user to enable audio -->
+  <!-- Enable Audio Overlay -->
   <div id="audio-overlay" class="audio-overlay">
     <div class="overlay-content">
       <p>Click to enable sound 🎶</p>
@@ -202,148 +225,101 @@
     const playBtn = document.querySelector(".btn-player-status");
     const loadingOverlay = document.getElementById("loading-overlay");
 
-    // Countdown Timer
+    // Countdown
     const weddingDate = new Date("December 6, 2025 16:00:00").getTime();
     const countdownEl = document.getElementById("countdown");
-
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = weddingDate - now;
-
-      if (distance < 0) {
-        countdownEl.innerHTML = "<p>We are married! 🎉💍</p>";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+      if (distance < 0) { countdownEl.innerHTML = "<p>We are married! 🎉💍</p>"; return; }
+      const d = Math.floor(distance / (1000*60*60*24));
+      const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+      const m = Math.floor((distance%(1000*60*60))/(1000*60));
+      const s = Math.floor((distance%(1000*60))/1000);
       countdownEl.innerHTML = `
-        <div class="time-box"><span>${days}</span><small>Days</small></div>
-        <div class="time-box"><span>${hours}</span><small>Hours</small></div>
-        <div class="time-box"><span>${minutes}</span><small>Minutes</small></div>
-        <div class="time-box"><span>${seconds}</span><small>Seconds</small></div>
-      `;
+        <div class="time-box"><span>${d}</span><small>Days</small></div>
+        <div class="time-box"><span>${h}</span><small>Hours</small></div>
+        <div class="time-box"><span>${m}</span><small>Minutes</small></div>
+        <div class="time-box"><span>${s}</span><small>Seconds</small></div>`;
     }
+    setInterval(updateCountdown,1000); updateCountdown();
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Wait for video to load
-    video.addEventListener('canplaythrough', () => {
-      loadingOverlay.style.display = 'none';
-      video.play().catch(()=>{}); // play muted for background
-    });
+    // Loading overlay
+    video.addEventListener('canplaythrough', () => { loadingOverlay.style.display='none'; video.play().catch(()=>{}); });
     video.load();
 
-    // Enable Audio & Unmute Video
+    // Enable audio: unmute video + play bgm
     enableBtn.addEventListener("click", () => {
       video.muted = false;
-      Promise.all([video.play(), audio.play()])
-        .then(() => {
-          overlay.style.display = "none";
-          if (playBtn) playBtn.textContent = "⏸️";
-        })
-        .catch(err => console.log("Playback failed:", err));
+      Promise.all([video.play(), audio.play()]).then(()=> {
+        overlay.style.display="none";
+        if (playBtn) playBtn.textContent="⏸️";
+      }).catch(console.log);
+    });
+    if (playBtn) playBtn.addEventListener("click", ()=> {
+      if (audio.paused) { audio.play(); playBtn.textContent="⏸️"; }
+      else { audio.pause(); playBtn.textContent="▶️"; }
     });
 
-    if (playBtn) {
-      playBtn.addEventListener("click", () => {
-        if (audio.paused) {
-          audio.play();
-          playBtn.textContent = "⏸️";
-        } else {
-          audio.pause();
-          playBtn.textContent = "▶️";
-        }
-      });
-    }
-
-    // Lightbox functions
-    function openLightbox(imgElement) {
-      document.getElementById("lightbox").style.display = "block";
-      document.getElementById("lightbox-img").src = imgElement.src;
+    // Lightbox (open/close + close on outside click + Esc key)
+    function openLightbox(imgElement, captionText) {
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightbox-img");
+      const lbCap = document.getElementById("lightbox-caption");
+      lbImg.src = imgElement.src;
+      lbCap.textContent = captionText || imgElement.alt || "";
+      lb.style.display = "flex";
+      lb.setAttribute("aria-hidden", "false");
+      // prevent background scrolling
+      document.body.style.overflow = "hidden";
     }
     function closeLightbox() {
-      document.getElementById("lightbox").style.display = "none";
+      const lb = document.getElementById("lightbox");
+      lb.style.display = "none";
+      lb.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      document.getElementById("lightbox-img").src = "";
     }
-
-    // Filmstrip Carousel
-    (function() {
-      const container = document.querySelector('.carousel-container');
-      const viewport = document.querySelector('.carousel-viewport');
-      const track = document.querySelector('.carousel-track');
-      const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-      const prevBtn = document.querySelector('.prev');
-      const nextBtn = document.querySelector('.next');
-      const captionEl = document.getElementById('carousel-caption');
-
-      if (!container || slides.length === 0) return;
-
-      let gap = parseFloat(getComputedStyle(track).gap) || 20;
-      let currentIndex = 0;
-      let autoplayTimer = null;
-      const AUTOPLAY_MS = 5000;
-
-      function updateCarousel() {
-        slides.forEach((s, i) => {
-          s.classList.toggle('active', i === currentIndex);
-          s.style.opacity = (i === currentIndex) ? '1' : '0.5';
-          s.style.transform = (i === currentIndex) ? 'scale(1)' : 'scale(0.85)';
-          s.style.zIndex = (i === currentIndex) ? 2 : 1;
-        });
-
-        let sum = 0;
-        for (let i = 0; i < currentIndex; i++) {
-          sum += slides[i].offsetWidth + gap;
-        }
-
-        const containerWidth = viewport.clientWidth;
-        const currentWidth = slides[currentIndex].offsetWidth;
-        const offset = (containerWidth / 2) - (currentWidth / 2) - sum;
-        track.style.transform = `translateX(${offset}px)`;
-
-        const dataCap = slides[currentIndex].dataset.caption;
-        if (captionEl) captionEl.textContent = dataCap || '';
+    // close when clicking outside the image
+    document.getElementById("lightbox").addEventListener("click", (e) => {
+      const img = document.getElementById("lightbox-img");
+      if (e.target === document.getElementById("lightbox") || e.target === img) {
+        // if clicked on backdrop or image itself, close
+        closeLightbox();
       }
+    });
+    // close on Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
 
-      function moveSlide(direction) {
-        currentIndex = (currentIndex + direction + slides.length) % slides.length;
-        updateCarousel();
+    // Filmstrip Carousel (works with 15 slides)
+    (function(){
+      const viewport=document.querySelector('.carousel-viewport');
+      const track=document.querySelector('.carousel-track');
+      const slides=[...document.querySelectorAll('.carousel-slide')];
+      const prev=document.querySelector('.prev'), next=document.querySelector('.next');
+      const captionEl=document.getElementById('carousel-caption');
+      if(!track||slides.length===0) return;
+      let gap=parseFloat(getComputedStyle(track).gap)||20, i=0, timer, ms=5000;
+      function update(){
+        slides.forEach((s,j)=>{ s.classList.toggle('active', j===i); s.style.opacity = j===i ? '1' : '0.5'; s.style.transform = j===i ? 'scale(1)' : 'scale(0.85)'; s.style.zIndex = j===i ? 2 : 1; });
+        let sum=0;
+        for(let k=0;k<i;k++){ sum += slides[k].offsetWidth + gap; }
+        const cw=viewport.clientWidth, w=slides[i].offsetWidth, offset=(cw/2)-(w/2)-sum;
+        track.style.transform=`translateX(${offset}px)`;
+        captionEl.textContent = slides[i].dataset.caption || "";
       }
-
-      prevBtn.addEventListener('click', () => { moveSlide(-1); resetAutoplay(); });
-      nextBtn.addEventListener('click', () => { moveSlide(1); resetAutoplay(); });
-
-      function startAutoplay() {
-        if (autoplayTimer) clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(() => moveSlide(1), AUTOPLAY_MS);
-      }
-      function resetAutoplay() { startAutoplay(); }
-
-      window.addEventListener('resize', () => {
-        gap = parseFloat(getComputedStyle(track).gap) || gap;
-        updateCarousel();
-      });
-
-      const imgs = track.querySelectorAll('img');
-      let loaded = 0;
-      imgs.forEach(img => {
-        if (img.complete) loaded++;
-        else img.addEventListener('load', () => {
-          loaded++;
-          if (loaded === imgs.length) {
-            updateCarousel();
-            startAutoplay();
-          }
-        });
-      });
-      if (loaded === imgs.length) {
-        updateCarousel();
-        startAutoplay();
-      }
+      function move(d){ i=(i+d+slides.length)%slides.length; update(); }
+      prev.addEventListener('click', ()=>{ move(-1); reset(); });
+      next.addEventListener('click', ()=>{ move(1); reset(); });
+      function start(){ if(timer) clearInterval(timer); timer = setInterval(()=>move(1), ms); }
+      function reset(){ start(); }
+      window.addEventListener('resize', ()=>{ gap = parseFloat(getComputedStyle(track).gap)||gap; update(); });
+      // wait images
+      let loaded=0;
+      slides.forEach(sl=>{ const img = sl.querySelector('img'); if(!img) { loaded++; return; } if(img.complete) loaded++; else img.addEventListener('load', ()=>{ loaded++; if(loaded===slides.length){ update(); start(); } }); });
+      if(loaded===slides.length){ update(); start(); }
     })();
   </script>
 </body>

@@ -127,7 +127,7 @@
       <form action="https://formsubmit.co/braverhene@gmail.com" method="POST" class="rsvp-form">
         <!-- Replace YOUR_EMAIL@example.com with your email; edit _next to the thank-you page you want -->
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New Wedding RSVP 💌">
+       <input type="hidden" name="_subject" value="New Wedding RSVP 💌">
         <input type="hidden" name="_template" value="table">
 
         <label for="rsvp-name">Your Name *</label>
@@ -380,49 +380,9 @@ window.addEventListener("click", (e) => {
   if (e.target === thankyouPopup) thankyouPopup.style.display = "none";
 });
 
-    
 
-  // Show popup when form is submitted
-  rsvpForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // stop default redirect
-    const formData = new FormData(rsvpForm);
-
-    fetch(rsvpForm.action, {
-      method: 'POST',
-      body: formData,
-    }).then(() => {
-      // Show the thank-you popup
-      thankyouPopup.style.display = 'flex';
-      rsvpForm.reset();
-    }).catch(err => {
-      alert("Something went wrong. Please try again.");
-      console.error(err);
-    });
-  });
-
-  // Close popup
-  closeThankyou.addEventListener('click', () => {
-    thankyouPopup.style.display = 'none';
-  });
-
-  // Close if clicking outside
-  thankyouPopup.addEventListener('click', (e) => {
-    if (e.target === thankyouPopup) {
-      thankyouPopup.style.display = 'none';
-    }
-  });
 
     // end of script
   </script>
-
-  <form action="https://formsubmit.co/braverhene@gmail.com" method="POST" style="margin:2rem; padding:1rem; border:1px solid #ccc;">
-  <h3>FormSubmit Verification Test</h3>
-  <p>This is only for verifying my email. I’ll delete it later.</p>
-
-  <label>Your Name</label>
-  <input type="text" name="name" required>
-
-  <button type="submit">Send Verification Request</button>
-</form>
 </body>
 </html>

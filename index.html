@@ -7,72 +7,8 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Loading Overlay */
-    .loading-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #fff url('https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567030/wedding_loading_bg.jpg') center center no-repeat;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    }
-    .loading-overlay p { font-size: 2rem; margin-top: 20px; }
-
-    /* Hero Video */
-    .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-    .hero { position: relative; overflow: hidden; }
-
-    /* Enable Audio Overlay */
-    .audio-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: flex; justify-content: center; align-items: center;
-      z-index: 10000; flex-direction: column;
-      font-family: 'Montserrat', sans-serif; color: #fff; text-align: center;
-    }
-    .audio-overlay button {
-      padding: 10px 25px; font-size: 1.2rem; border: none; border-radius: 5px;
-      background: #f5c518; color: #333; cursor: pointer; margin-top: 15px; font-weight: 600;
-    }
-
-    /* Lightbox Fullscreen (small adjustments here so it matches the rest of the site) */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 11000;
-      left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center; align-items: center;
-      flex-direction: column;
-      animation: fadeIn 0.3s ease;
-    }
-    .lightbox img {
-      max-width: 90%; max-height: 70%;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-      transform: scale(0.8);
-      animation: zoomIn 0.3s ease forwards;
-    }
-    .lightbox-caption {
-      color: #fff; margin-top: 15px;
-      font-size: 1.2rem; text-align: center; font-style: italic;
-    }
-    .lightbox .close {
-      position: absolute; top: 25px; right: 35px;
-      font-size: 2rem; color: #fff; cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .lightbox .close:hover { transform: scale(1.15); }
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes zoomIn { from {transform: scale(0.8);} to {transform: scale(1);} }
+    /* Small inline styles for the loading overlay fallback font */
+    .loading-overlay, .audio-overlay { font-family: 'Montserrat', sans-serif; }
   </style>
 </head>
 <body>
@@ -90,7 +26,7 @@
       <a href="#hero">Home</a>
       <a href="#story">Our Story</a>
       <a href="#details">Details</a>
-      <a href="#rsvp">RSVP</a>
+      <a href="#" id="open-rsvp">RSVP</a>
     </nav>
   </header>
   
@@ -161,7 +97,8 @@
         <p>🕓 4:00 PM<br>December 6, 2025</p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg"" alt="Dress Code"
+        <!-- fixed extra quote here -->
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg" alt="Dress Code"
              onclick="openLightbox(this, '💕 The Entourage ')">
         <p>💕 The Entourage <br></p>
       </div>
@@ -180,10 +117,62 @@
     <p id="lightbox-caption" class="lightbox-caption"></p>
   </div>
 
-  <!-- RSVP Placeholder -->
+  <!-- RSVP Fullscreen Overlay (FormSubmit) -->
+  <div id="rsvp-overlay" class="rsvp-overlay" aria-hidden="true">
+    <div class="rsvp-content" role="dialog" aria-modal="true" aria-labelledby="rsvp-title">
+      <button class="close-rsvp" aria-label="Close RSVP overlay">✖</button>
+      <h2 id="rsvp-title">RSVP 💌</h2>
+      <p>Please let us know if you’ll be joining us!</p>
+
+      <form action="https://formsubmit.co/braverhene@gmail.com" method="POST" class="rsvp-form">
+        <!-- Replace YOUR_EMAIL@example.com with your email; edit _next to the thank-you page you want -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Wedding RSVP 💌">
+        <input type="hidden" name="_template" value="table">
+
+        <label for="rsvp-name">Your Name *</label>
+        <input type="text" id="rsvp-name" name="name" required>
+
+        <label for="rsvp-guests">Number of Guests *</label>
+        <input type="number" id="rsvp-guests" name="guests" min="1" max="10" required>
+
+        <label for="rsvp-attending">Will you attend? *</label>
+        <select id="rsvp-attending" name="attending" required>
+          <option value="">--Select--</option>
+          <option value="Yes">Yes, I’ll be there 🎉</option>
+          <option value="No">Sorry, I can’t make it 💔</option>
+          <option value="Maybe">Maybe 🤔</option>
+        </select>
+
+        <label for="rsvp-message">Message (optional)</label>
+        <textarea id="rsvp-message" name="message" placeholder="Any dietary needs or a message..."></textarea>
+
+        <button type="submit">Submit RSVP</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Thank You Popup -->
+  <div id="thankyou-popup" class="thankyou-popup">
+    <div class="thankyou-content">
+      <span class="close-thankyou">&times;</span>
+      <h2>Thank You 💖</h2>
+      <p>Your RSVP has been received.<br>
+         We can’t wait to celebrate with you!</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Reychel & Lando</p>
+  </footer>
+
+
+  <!-- RSVP "small" section placeholder so anchor still works (optional) -->
   <section id="rsvp" class="rsvp">
     <h2>RSVP</h2>
-    <p>RSVP form coming soon!</p>
+    <p>Click <strong>RSVP</strong> in the navigation to respond.</p>
   </section>
 
   <!-- Footer -->
@@ -193,23 +182,23 @@
 
   <!-- Audio Player -->
   <div class="player-bar-wrap">
-    <p class="btn-player-menu">🎵</p>
-    <div class="player-bar-status">
+    <p class="btn-player-menu" aria-hidden="true">🎵</p>
+    <div class="player-bar-status" aria-hidden="true">
       <div class="player-bar-status-column"></div>
       <div class="player-bar-status-column"></div>
       <div class="player-bar-status-column"></div>
     </div>
     <p class="music-name">Joyful</p>
     <audio src="https://res.cloudinary.com/dcytvgwj7/video/upload/v1758567096/runaway_qlqag7.webm" id="page-bgm-pc" loop></audio>
-    <div class="player-btn-list">
-      <span class="btn-player-prev">⏮️</span>
-      <span class="btn-player-status play">▶️</span>
-      <span class="btn-player-next">⏭️</span>
+    <div class="player-btn-list" role="group" aria-label="Music controls">
+      <span class="btn-player-prev" aria-label="Previous">⏮️</span>
+      <span class="btn-player-status play" aria-label="Play or pause">▶️</span>
+      <span class="btn-player-next" aria-label="Next">⏭️</span>
     </div>
   </div>
 
   <!-- Enable Audio Overlay -->
-  <div id="audio-overlay" class="audio-overlay">
+  <div id="audio-overlay" class="audio-overlay" aria-hidden="false">
     <div class="overlay-content">
       <p>Click to enable sound 🎶</p>
       <button id="enable-audio-btn">Enable Audio</button>
@@ -253,6 +242,7 @@
       video.muted = false;
       Promise.all([video.play(), audio.play()]).then(()=> {
         overlay.style.display="none";
+        overlay.setAttribute('aria-hidden','true');
         if (playBtn) playBtn.textContent="⏸️";
       }).catch(console.log);
     });
@@ -280,17 +270,19 @@
       document.body.style.overflow = "";
       document.getElementById("lightbox-img").src = "";
     }
-    // close when clicking outside the image
+    // close when clicking outside the image (backdrop only)
     document.getElementById("lightbox").addEventListener("click", (e) => {
-      const img = document.getElementById("lightbox-img");
-      if (e.target === document.getElementById("lightbox") || e.target === img) {
-        // if clicked on backdrop or image itself, close
+      const lb = document.getElementById("lightbox");
+      if (e.target === lb) {
         closeLightbox();
       }
     });
-    // close on Esc
+    // close on Esc (will also be used to close RSVP)
     document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") closeLightbox();
+      if (e.key === "Escape") {
+        closeLightbox();
+        closeRsvpOverlay(); // defined below (safe if undefined until later)
+      }
     });
 
     // Filmstrip Carousel (works with 15 slides)
@@ -321,6 +313,116 @@
       slides.forEach(sl=>{ const img = sl.querySelector('img'); if(!img) { loaded++; return; } if(img.complete) loaded++; else img.addEventListener('load', ()=>{ loaded++; if(loaded===slides.length){ update(); start(); } }); });
       if(loaded===slides.length){ update(); start(); }
     })();
+
+    /********** RSVP Overlay Logic **********/
+    const openRsvpBtn = document.getElementById("open-rsvp");
+    const rsvpOverlay = document.getElementById("rsvp-overlay");
+    const closeRsvpBtn = document.querySelector(".close-rsvp");
+
+    function openRsvpOverlay() {
+      if(!rsvpOverlay) return;
+      rsvpOverlay.style.display = "flex";
+      rsvpOverlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow = "hidden";
+      // focus the first input for accessibility
+      const firstInput = rsvpOverlay.querySelector('input, select, textarea, button');
+      if (firstInput) firstInput.focus();
+    }
+    function closeRsvpOverlay() {
+      if(!rsvpOverlay) return;
+      rsvpOverlay.style.display = "none";
+      rsvpOverlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow = "";
+    }
+
+    if (openRsvpBtn) {
+      openRsvpBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        openRsvpOverlay();
+      });
+    }
+    if (closeRsvpBtn) {
+      closeRsvpBtn.addEventListener("click", () => {
+        closeRsvpOverlay();
+      });
+    }
+    // click outside rsvp content closes overlay
+    window.addEventListener("click", (e) => {
+      if (rsvpOverlay && e.target === rsvpOverlay) {
+        closeRsvpOverlay();
+      }
+    });
+// Thank You Popup Logic
+const rsvpForm = document.querySelector(".rsvp-form");
+const thankyouPopup = document.getElementById("thankyou-popup");
+const closeThankyou = document.querySelector(".close-thankyou");
+
+if (rsvpForm) {
+  rsvpForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    fetch(rsvpForm.action, {
+      method: "POST",
+      body: new FormData(rsvpForm),
+    }).then(() => {
+      rsvpOverlay.style.display = "none";
+      rsvpForm.reset();
+      thankyouPopup.style.display = "flex";
+    }).catch(() => {
+      alert("There was an error sending your RSVP. Please try again.");
+    });
+  });
+}
+
+closeThankyou.addEventListener("click", () => {
+  thankyouPopup.style.display = "none";
+});
+window.addEventListener("click", (e) => {
+  if (e.target === thankyouPopup) thankyouPopup.style.display = "none";
+});
+
+    
+
+  // Show popup when form is submitted
+  rsvpForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // stop default redirect
+    const formData = new FormData(rsvpForm);
+
+    fetch(rsvpForm.action, {
+      method: 'POST',
+      body: formData,
+    }).then(() => {
+      // Show the thank-you popup
+      thankyouPopup.style.display = 'flex';
+      rsvpForm.reset();
+    }).catch(err => {
+      alert("Something went wrong. Please try again.");
+      console.error(err);
+    });
+  });
+
+  // Close popup
+  closeThankyou.addEventListener('click', () => {
+    thankyouPopup.style.display = 'none';
+  });
+
+  // Close if clicking outside
+  thankyouPopup.addEventListener('click', (e) => {
+    if (e.target === thankyouPopup) {
+      thankyouPopup.style.display = 'none';
+    }
+  });
+
+    // end of script
   </script>
+
+  <form action="https://formsubmit.co/braverhene@gmail.com" method="POST" style="margin:2rem; padding:1rem; border:1px solid #ccc;">
+  <h3>FormSubmit Verification Test</h3>
+  <p>This is only for verifying my email. I’ll delete it later.</p>
+
+  <label>Your Name</label>
+  <input type="text" name="name" required>
+
+  <button type="submit">Send Verification Request</button>
+</form>
 </body>
 </html>

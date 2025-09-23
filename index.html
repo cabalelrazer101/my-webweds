@@ -24,7 +24,7 @@
     <div class="logo">💍 Reychel & Orlando</div>
     <nav>
       <a href="#hero">Home</a>
-      <a href="#story">Our Story</a>
+      <a href="#story">Prenup Moments</a>
       <a href="#details">Details</a>
       <a href="#" id="open-rsvp">RSVP</a>
     </nav>
@@ -50,7 +50,7 @@
 
   <!-- Our Story with Filmstrip Carousel (slides 1..15 included) -->
   <section id="story" class="story">
-    <h2>Our Story</h2>
+    <h2>Prenup Moments</h2>
     <div class="carousel-container">
       <button class="prev" aria-label="Previous slide">❮</button>
       <div class="carousel-viewport">
@@ -84,28 +84,28 @@
       <div class="detail-card">
         <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail1_huwha5.jpg" alt="Ceremony"
              onclick="openLightbox(this, '📍 Ceremony - Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite')">
-        <p>📍 Ceremony<br>Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite</p>
+        <p>📍 Ceremony<br>Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite (Tap to View)</p>
       </div>
       <div class="detail-card">
         <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail2_ht7m1k.jpg" alt="Reception"
              onclick="openLightbox(this, '🎉 Reception - Patio Lazaro')">
-        <p>🎉 Reception<br>Patio Lazaro</p>
+        <p>🎉 Reception<br>Patio Lazaro (Tap to View)</p>
       </div>
       <div class="detail-card">
         <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail3_tsh6og.jpg" alt="Time"
-             onclick="openLightbox(this, '🕓 4:00 PM, December 6, 2025')">
-        <p>🕓 4:00 PM<br>December 6, 2025</p>
+             onclick="openLightbox(this, '🕓 11:00 AM, December 6, 2025')">
+        <p>🕓 4:00 PM<br>December 6, 2025 (Tap to View)</p>
       </div>
       <div class="detail-card">
         <!-- fixed extra quote here -->
         <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg" alt="Dress Code"
              onclick="openLightbox(this, '💕 The Entourage ')">
-        <p>💕 The Entourage <br></p>
+        <p>💕 The Entourage (Tap to View)<br></p>
       </div>
       <div class="detail-card">
         <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail5_kinxzt.jpg" alt="Accommodations"
              onclick="openLightbox(this, '👗 Dress Code - Formal Attire')">
-        <p><br>👗 Dress Code - Formal Attire </p>
+        <p><br>👗 Dress Code - Formal Attire (Tap to View)</p>
       </div>
     </div>
   </section>
@@ -133,8 +133,7 @@
         <label for="rsvp-name">Your Name *</label>
         <input type="text" id="rsvp-name" name="name" required>
 
-        <label for="rsvp-guests">Number of Guests *</label>
-        <input type="number" id="rsvp-guests" name="guests" min="1" max="10" required>
+        
 
         <label for="rsvp-attending">Will you attend? *</label>
         <select id="rsvp-attending" name="attending" required>
@@ -215,7 +214,7 @@
     const loadingOverlay = document.getElementById("loading-overlay");
 
     // Countdown
-    const weddingDate = new Date("December 6, 2025 16:00:00").getTime();
+    const weddingDate = new Date("December 6, 2025 11:00:00").getTime();
     const countdownEl = document.getElementById("countdown");
     function updateCountdown() {
       const now = new Date().getTime();

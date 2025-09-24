@@ -594,3 +594,17 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.reload-map-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: #e8e8e8;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.reload-map-btn:hover {
+  background: #d6d6d6;
+}

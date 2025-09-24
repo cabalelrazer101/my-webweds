@@ -178,29 +178,34 @@
     <p>Click <strong>RSVP</strong> at the top to respond.</p>
   </section>
 
-  <!-- Google Maps Section -->
-  <section id="map-section" class="map-section">
-    <h2>📍 How to Get There</h2>
-    <div class="map-container">
-      <!-- Church Map -->
-      <div class="map-card">
-        <h3>Ceremony – Imus Cathedral</h3>
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.924562034922!2d120.93040761539241!3d14.429356238503186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d2f49e2d502d%3A0xd32bcd932914f10f!2sDiocesan%20Shrine%20and%20Cathedral%20Parish%20of%20Our%20Lady%20of%20the%20Pillar%20(Imus%20Cathedral)!5e0!3m2!1sen!2sph!4v1695690000000!5m2!1sen!2sph" 
-          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
-      </div>
-
-      <!-- Reception Map -->
-      <div class="map-card">
-        <h3>Reception – Patio Lazaro</h3>
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30868.23856215465!2d120.9228228!3d14.442990599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d3ffb54e2247%3A0x28da1574aab6e8d5!2sPatio%20Lazaro!5e0!3m2!1sen!2sph!4v1695690500000!5m2!1sen!2sph" 
-          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
-      </div>
+ <!-- Google Maps Section -->
+<section id="map-section" class="map-section">
+  <h2>📍 How to Get There</h2>
+  <div class="map-container">
+    <!-- Church Map -->
+    <div class="map-card">
+      <h3>Ceremony – Imus Cathedral</h3>
+      <iframe 
+        id="map-church"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.924562034922!2d120.93040761539241!3d14.429356238503186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d2f49e2d502d%3A0xd32bcd932914f10f!2sDiocesan%20Shrine%20and%20Cathedral%20Parish%20of%20Our%20Lady%20of%20the%20Pillar%20(Imus%20Cathedral)!5e0!3m2!1sen!2sph!4v1695690000000!5m2!1sen!2sph" 
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+      <button class="reload-map-btn" onclick="reloadMap('map-church')">🔄 Reload Map</button>
     </div>
-  </section>
+
+    <!-- Reception Map -->
+    <div class="map-card">
+      <h3>Reception – Patio Lazaro</h3>
+      <iframe 
+        id="map-reception"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30868.23856215465!2d120.9228228!3d14.442990599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d3ffb54e2247%3A0x28da1574aab6e8d5!2sPatio%20Lazaro!5e0!3m2!1sen!2sph!4v1695690500000!5m2!1sen!2sph" 
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+      <button class="reload-map-btn" onclick="reloadMap('map-reception')">🔄 Reload Map</button>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -409,6 +414,14 @@ window.addEventListener("click", (e) => {
   if (e.target === thankyouPopup) thankyouPopup.style.display = "none";
 });
 
+function reloadMap(mapId) {
+  const iframe = document.getElementById(mapId);
+  if (iframe) {
+    const src = iframe.src;
+    iframe.src = ""; // clear first
+    setTimeout(() => { iframe.src = src; }, 100); // reload after short delay
+  }
+}
 
 
     // end of script

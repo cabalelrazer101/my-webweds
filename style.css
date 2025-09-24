@@ -562,3 +562,35 @@ footer {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
+.map-section {
+  padding: 3rem 1rem;
+  text-align: center;
+  background: #fafafa;
+}
+.map-section h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.map-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.map-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.map-card iframe {
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+@media (min-width: 768px) {
+  .map-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}

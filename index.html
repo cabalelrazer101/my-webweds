@@ -9,6 +9,42 @@
   <style>
     /* Small inline styles for the loading overlay fallback font */
     .loading-overlay, .audio-overlay { font-family: 'Montserrat', sans-serif; }
+
+     /* 🔽 Add your background + overlay CSS here */
+    #story, 
+    #details, 
+    #rsvp {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    #story::before,
+    #details::before,
+    #rsvp::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567024/bg_xei5ld.jpg") center/cover no-repeat;
+      background-attachment: fixed;
+      opacity: 0.35;
+      z-index: -2;
+    }
+
+    #story::after,
+    #details::after,
+    #rsvp::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.35); /* dark overlay */
+      backdrop-filter: blur(3px);   /* subtle blur */
+      z-index: -1;
+    }
+
+
   </style>
 </head>
 <body>
@@ -231,6 +267,8 @@
     </div>
   </div>
 
+   <div class="petals"></div>
+   
   <!-- Enable Audio Overlay -->
   <div id="audio-overlay" class="audio-overlay" aria-hidden="false">
     <div class="overlay-content">
@@ -423,8 +461,37 @@ function reloadMap(mapId) {
   }
 }
 
+ const petalsContainer = document.querySelector('.petals');
+
+  function createPetal() {
+    const petal = document.createElement('div');
+    petal.classList.add('petal');
+    
+    // Random horizontal start
+    petal.style.left = Math.random() * 100 + "vw";
+    // Random animation duration for natural feel
+    petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+    // Random size variation
+    const size = 10 + Math.random() * 10;
+    petal.style.width = size + "px";
+    petal.style.height = (size * 1.4) + "px";
+    // Soft pink shades variation
+    petal.style.background = `rgba(255,182,193,${0.6 + Math.random()*0.4})`;
+
+    petalsContainer.appendChild(petal);
+
+    // Remove after animation
+    setTimeout(() => {
+      petal.remove();
+    }, 10000);
+  }
+
+  // Moderate rain: new petal every 400ms
+  setInterval(createPetal, 400);
+
 
     // end of script
   </script>
+ 
 </body>
 </html>

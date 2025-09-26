@@ -325,38 +325,42 @@
 
     
     // Lightbox (open/close + close on outside click + Esc key)
-    function openLightbox(imgElement, captionText) {
-      const lb = document.getElementById("lightbox");
-      const lbImg = document.getElementById("lightbox-img");
-      const lbCap = document.getElementById("lightbox-caption");
-      lbImg.src = imgElement.src;
-      lbCap.textContent = captionText || imgElement.alt || "";
-      lb.style.display = "flex";
-      lb.setAttribute("aria-hidden", "false");
-      // prevent background scrolling
-      document.body.style.overflow = "hidden";
+   function openLightbox(imgElement, captionText) {
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-img");
+    const lbCap = document.getElementById("lightbox-caption");
+
+    lbImg.src = imgElement.src;
+    lbCap.textContent = captionText || imgElement.alt || "";
+    lb.style.display = "flex";
+    lb.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    // 🔹 Add a new history state so back button will close lightbox
+    history.pushState({ lightboxOpen: true }, "", "#lightbox");
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById("lightbox");
+    lb.style.display = "none";
+    lb.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    document.getElementById("lightbox-img").src = "";
+
+    // 🔹 Go back in history if state was pushed
+    if (history.state && history.state.lightboxOpen) {
+      history.back();
     }
-    function closeLightbox() {
-      const lb = document.getElementById("lightbox");
-      lb.style.display = "none";
-      lb.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      document.getElementById("lightbox-img").src = "";
+  }
+
+  // 🔹 Handle system back button (popstate event)
+  window.addEventListener("popstate", (event) => {
+    const lb = document.getElementById("lightbox");
+    if (lb.style.display === "flex") {
+      // If lightbox is open, close it instead of leaving page
+      closeLightbox();
     }
-    // close when clicking outside the image (backdrop only)
-    document.getElementById("lightbox").addEventListener("click", (e) => {
-      const lb = document.getElementById("lightbox");
-      if (e.target === lb) {
-        closeLightbox();
-      }
-    });
-    // close on Esc (will also be used to close RSVP)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") {
-        closeLightbox();
-        closeRsvpOverlay(); // defined below (safe if undefined until later)
-      }
-    });
+  });
 
     // Filmstrip Carousel (works with 15 slides)
     (function(){
@@ -392,33 +396,43 @@
     const rsvpOverlay = document.getElementById("rsvp-overlay");
     const closeRsvpBtn = document.querySelector(".close-rsvp");
 
-    function openRsvpOverlay() {
-      if(!rsvpOverlay) return;
-      rsvpOverlay.style.display = "flex";
-      rsvpOverlay.setAttribute('aria-hidden','false');
-      document.body.style.overflow = "hidden";
-      // focus the first input for accessibility
-      const firstInput = rsvpOverlay.querySelector('input, select, textarea, button');
-      if (firstInput) firstInput.focus();
-    }
-    function closeRsvpOverlay() {
-      if(!rsvpOverlay) return;
-      rsvpOverlay.style.display = "none";
-      rsvpOverlay.setAttribute('aria-hidden','true');
-      document.body.style.overflow = "";
-    }
+     function openRsvpOverlay() {
+    if (!rsvpOverlay) return;
+    rsvpOverlay.style.display = "flex";
+    rsvpOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
 
-    if (openRsvpBtn) {
-      openRsvpBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        openRsvpOverlay();
-      });
+    // focus the first input for accessibility
+    const firstInput = rsvpOverlay.querySelector('input, select, textarea, button');
+    if (firstInput) firstInput.focus();
+
+    // 🔹 Add history state so back button closes RSVP instead of leaving page
+    history.pushState({ rsvpOpen: true }, "", "#rsvp");
+  }
+
+  function closeRsvpOverlay() {
+    if (!rsvpOverlay) return;
+    rsvpOverlay.style.display = "none";
+    rsvpOverlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    // 🔹 Remove the state by going back one step if RSVP was opened
+    if (history.state && history.state.rsvpOpen) {
+      history.back();
     }
-    if (closeRsvpBtn) {
-      closeRsvpBtn.addEventListener("click", () => {
-        closeRsvpOverlay();
-      });
+  }
+
+  // 🔹 Handle system back button for RSVP
+  window.addEventListener("popstate", (event) => {
+    const lb = document.getElementById("lightbox");
+    if (lb && lb.style.display === "flex") {
+      closeLightbox();
     }
+    if (rsvpOverlay && rsvpOverlay.style.display === "flex") {
+      closeRsvpOverlay();
+    }
+  });
+    
     // click outside rsvp content closes overlay
     window.addEventListener("click", (e) => {
       if (rsvpOverlay && e.target === rsvpOverlay) {

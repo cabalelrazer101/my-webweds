@@ -247,24 +247,21 @@
   </footer>
 
   <!-- Audio Player -->
-<div class="player-bar-wrap">
-  <p class="btn-player-menu" aria-hidden="true">🎵</p>
-  <div class="player-bar-status" aria-hidden="true">
-    <div class="player-bar-status-column"></div>
-    <div class="player-bar-status-column"></div>
-    <div class="player-bar-status-column"></div>
+  <div class="player-bar-wrap">
+    <p class="btn-player-menu" aria-hidden="true">🎵</p>
+    <div class="player-bar-status" aria-hidden="true">
+      <div class="player-bar-status-column"></div>
+      <div class="player-bar-status-column"></div>
+      <div class="player-bar-status-column"></div>
+    </div>
+    <p class="music-name">Runaway</p>
+    <audio src="https://res.cloudinary.com/dcytvgwj7/video/upload/v1758567096/runaway_qlqag7.webm" id="page-bgm-pc" loop></audio>
+    <div class="player-btn-list" role="group" aria-label="Music controls">
+      <span class="btn-player-prev" aria-label="Previous">⏮️</span>
+      <span class="btn-player-status play" aria-label="Play or pause">▶️</span>
+      <span class="btn-player-next" aria-label="Next">⏭️</span>
+    </div>
   </div>
-  <p class="music-name">Runaway</p>
-
-  <!-- Single audio element (we'll switch sources in JS) -->
-  <audio id="page-bgm-pc" loop></audio>
-
-  <div class="player-btn-list" role="group" aria-label="Music controls">
-    <span class="btn-player-prev" aria-label="Previous">⏮️</span>
-    <span class="btn-player-status play" aria-label="Play or pause">▶️</span>
-    <span class="btn-player-next" aria-label="Next">⏭️</span>
-  </div>
-</div>
 
    <div class="petals"></div>
 
@@ -322,6 +319,11 @@
       else { audio.pause(); playBtn.textContent="▶️"; }
     });
 
+
+
+
+
+    
     // Lightbox (open/close + close on outside click + Esc key)
     function openLightbox(imgElement, captionText) {
       const lb = document.getElementById("lightbox");
@@ -514,64 +516,6 @@ setVideo();
 window.addEventListener("resize", setVideo);
 window.addEventListener("orientationchange", setVideo);
 
-
-const audio = document.getElementById("page-bgm-pc");
-const musicName = document.querySelector(".music-name");
-const btnPlay = document.querySelector(".btn-player-status");
-const btnPrev = document.querySelector(".btn-player-prev");
-const btnNext = document.querySelector(".btn-player-next");
-
-// 🎶 Playlist
-const playlist = [
-  {
-    title: "Runaway",
-    src: "https://res.cloudinary.com/dcytvgwj7/video/upload/v1758567096/runaway_qlqag7.webm"
-  },
-  {
-    title: "Joyful",
-    src: "https://res.cloudinary.com/dcytvgwj7/video/upload/v1758850156/BGM_Joyful_1_siib01.mp3"
-  }
-];
-
-let currentIndex = 0;
-let isPlaying = false;
-
-// Load the current track
-function loadTrack(index) {
-  const track = playlist[index];
-  audio.src = track.src;
-  musicName.textContent = track.title;
-  if (isPlaying) {
-    audio.play().catch(()=>{});
-  }
-}
-
-// Play / Pause toggle
-btnPlay.addEventListener("click", () => {
-  if (isPlaying) {
-    audio.pause();
-    btnPlay.textContent = "▶️"; // play icon
-  } else {
-    audio.play().catch(()=>{});
-    btnPlay.textContent = "⏸️"; // pause icon
-  }
-  isPlaying = !isPlaying;
-});
-
-// Next track
-btnNext.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % playlist.length;
-  loadTrack(currentIndex);
-});
-
-// Previous track
-btnPrev.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-  loadTrack(currentIndex);
-});
-
-// Auto load the first track (Runaway by default)
-loadTrack(currentIndex);
 
 
     // end of script

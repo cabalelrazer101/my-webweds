@@ -396,43 +396,33 @@
     const rsvpOverlay = document.getElementById("rsvp-overlay");
     const closeRsvpBtn = document.querySelector(".close-rsvp");
 
-     function openRsvpOverlay() {
-    if (!rsvpOverlay) return;
-    rsvpOverlay.style.display = "flex";
-    rsvpOverlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-
-    // focus the first input for accessibility
-    const firstInput = rsvpOverlay.querySelector('input, select, textarea, button');
-    if (firstInput) firstInput.focus();
-
-    // 🔹 Add history state so back button closes RSVP instead of leaving page
-    history.pushState({ rsvpOpen: true }, "", "#rsvp");
-  }
-
-  function closeRsvpOverlay() {
-    if (!rsvpOverlay) return;
-    rsvpOverlay.style.display = "none";
-    rsvpOverlay.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-
-    // 🔹 Remove the state by going back one step if RSVP was opened
-    if (history.state && history.state.rsvpOpen) {
-      history.back();
+    function openRsvpOverlay() {
+      if(!rsvpOverlay) return;
+      rsvpOverlay.style.display = "flex";
+      rsvpOverlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow = "hidden";
+      // focus the first input for accessibility
+      const firstInput = rsvpOverlay.querySelector('input, select, textarea, button');
+      if (firstInput) firstInput.focus();
     }
-  }
+    function closeRsvpOverlay() {
+      if(!rsvpOverlay) return;
+      rsvpOverlay.style.display = "none";
+      rsvpOverlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow = "";
+    }
 
-  // 🔹 Handle system back button for RSVP
-  window.addEventListener("popstate", (event) => {
-    const lb = document.getElementById("lightbox");
-    if (lb && lb.style.display === "flex") {
-      closeLightbox();
+    if (openRsvpBtn) {
+      openRsvpBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        openRsvpOverlay();
+      });
     }
-    if (rsvpOverlay && rsvpOverlay.style.display === "flex") {
-      closeRsvpOverlay();
+    if (closeRsvpBtn) {
+      closeRsvpBtn.addEventListener("click", () => {
+        closeRsvpOverlay();
+      });
     }
-  });
-    
     // click outside rsvp content closes overlay
     window.addEventListener("click", (e) => {
       if (rsvpOverlay && e.target === rsvpOverlay) {

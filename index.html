@@ -104,7 +104,14 @@
           <div class="carousel-slide" data-caption="City Walk 💖"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567029/story15_apjyvg.jpg" alt="Story 15"></div>
           <div class="carousel-slide" data-caption="Walk to Forever💍"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758696728/walktoforever_viijqp.jpg" alt="Story 16"></div>
           <div class="carousel-slide" data-caption="Moments of Laughter 💖"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758696863/momentsoflaughter_zuqjet.jpg" alt="Story 17"></div>
-          <div class="carousel-slide" data-caption="To The Future 💕"><img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758696822/tothefuture_vvfpxy.jpg" alt="Story 18"></div>
+          
+          <div class="carousel-slide" data-caption="To The Future 💕">
+          <video controls loop muted playsinline>
+          <source src="https://res.cloudinary.com/dcytvgwj7/video/upload/v1759008357/walktofuture2_dsj2yu.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          </video>
+          </div>
+
         </div>
       </div>
       <button class="next" aria-label="Next slide">❯</button>
@@ -117,28 +124,28 @@
     <h2>Wedding Details</h2>
     <div class="details-grid">
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail1_huwha5.jpg" alt="Ceremony"
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1759113424/1_hqdq6v.jpg" alt="Ceremony"
              onclick="openLightbox(this, '📍 Ceremony - Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite')">
         <p>📍 Ceremony<br>Diocesan Shrine and Parish of Our Lady of the Pillar, Imus Cavite <br>(Tap the Photo to View)</p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail2_ht7m1k.jpg" alt="Reception"
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1759113425/4_ldpsp7.jpg" alt="Reception"
              onclick="openLightbox(this, '🎉 Reception - Patio Lazaro')">
         <p>🎉 Reception<br>Patio Lazaro <br>(Tap the Photo to View)</p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567025/detail3_tsh6og.jpg" alt="Time"
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1759113424/2_o5zghn.jpg" alt="Time"
              onclick="openLightbox(this, '🕓 11:00 AM, December 6, 2025')">
         <p>🕓 11:00 AM<br>December 6, 2025<br> (Tap the Photo to View)</p>
       </div>
       <div class="detail-card">
         <!-- fixed extra quote here -->
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail4_k2kz2e.jpg" alt="Dress Code"
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1759113425/3_vgq0ce.jpg" alt="Dress Code"
              onclick="openLightbox(this, '💕 The Entourage ')">
         <p>💕 The Entourage <br>(Tap the Photo to View)<br></p>
       </div>
       <div class="detail-card">
-        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1758567026/detail5_kinxzt.jpg" alt="Accommodations"
+        <img src="https://res.cloudinary.com/dcytvgwj7/image/upload/v1759113427/5_zbxlih.jpg" alt="Accommodations"
              onclick="openLightbox(this, '👗 Dress Code - Formal Attire')">
         <p><br>👗 Dress Code - Formal Attire<br> (Tap the Photo to View)</p>
       </div>
@@ -364,32 +371,88 @@
 
     // Filmstrip Carousel (works with 15 slides)
     (function(){
-      const viewport=document.querySelector('.carousel-viewport');
-      const track=document.querySelector('.carousel-track');
-      const slides=[...document.querySelectorAll('.carousel-slide')];
-      const prev=document.querySelector('.prev'), next=document.querySelector('.next');
-      const captionEl=document.getElementById('carousel-caption');
-      if(!track||slides.length===0) return;
-      let gap=parseFloat(getComputedStyle(track).gap)||20, i=0, timer, ms=5000;
-      function update(){
-        slides.forEach((s,j)=>{ s.classList.toggle('active', j===i); s.style.opacity = j===i ? '1' : '0.5'; s.style.transform = j===i ? 'scale(1)' : 'scale(0.85)'; s.style.zIndex = j===i ? 2 : 1; });
-        let sum=0;
-        for(let k=0;k<i;k++){ sum += slides[k].offsetWidth + gap; }
-        const cw=viewport.clientWidth, w=slides[i].offsetWidth, offset=(cw/2)-(w/2)-sum;
-        track.style.transform=`translateX(${offset}px)`;
-        captionEl.textContent = slides[i].dataset.caption || "";
+  const viewport = document.querySelector('.carousel-viewport');
+  const track = document.querySelector('.carousel-track');
+  const slides = [...document.querySelectorAll('.carousel-slide')];
+  const prev = document.querySelector('.prev'), next = document.querySelector('.next');
+  const captionEl = document.getElementById('carousel-caption');
+  if (!track || slides.length === 0) return;
+
+  let gap = parseFloat(getComputedStyle(track).gap) || 20,
+      i = 0,
+      timer,
+      ms = 5000;
+
+  function update() {
+    slides.forEach((s, j) => {
+      const isActive = j === i;
+      s.classList.toggle('active', isActive);
+      s.style.opacity = isActive ? '1' : '0.5';
+      s.style.transform = isActive ? 'scale(1)' : 'scale(0.85)';
+      s.style.zIndex = isActive ? 2 : 1;
+
+      // 🎥 handle video autoplay only for active slide
+      const videoEl = s.querySelector("video");
+      if (videoEl) {
+        if (isActive) {
+          videoEl.play().catch(()=>{});
+        } else {
+          videoEl.pause();
+          videoEl.currentTime = 0; // reset
+        }
       }
-      function move(d){ i=(i+d+slides.length)%slides.length; update(); }
-      prev.addEventListener('click', ()=>{ move(-1); reset(); });
-      next.addEventListener('click', ()=>{ move(1); reset(); });
-      function start(){ if(timer) clearInterval(timer); timer = setInterval(()=>move(1), ms); }
-      function reset(){ start(); }
-      window.addEventListener('resize', ()=>{ gap = parseFloat(getComputedStyle(track).gap)||gap; update(); });
-      // wait images
-      let loaded=0;
-      slides.forEach(sl=>{ const img = sl.querySelector('img'); if(!img) { loaded++; return; } if(img.complete) loaded++; else img.addEventListener('load', ()=>{ loaded++; if(loaded===slides.length){ update(); start(); } }); });
-      if(loaded===slides.length){ update(); start(); }
-    })();
+    });
+
+    // center the active slide
+    let sum = 0;
+    for (let k = 0; k < i; k++) {
+      sum += slides[k].offsetWidth + gap;
+    }
+    const cw = viewport.clientWidth, w = slides[i].offsetWidth;
+    const offset = (cw / 2) - (w / 2) - sum;
+    track.style.transform = `translateX(${offset}px)`;
+
+    captionEl.textContent = slides[i].dataset.caption || "";
+  }
+
+  function move(d) {
+    i = (i + d + slides.length) % slides.length;
+    update();
+  }
+  prev.addEventListener('click', () => { move(-1); reset(); });
+  next.addEventListener('click', () => { move(1); reset(); });
+
+  function start(){ if (timer) clearInterval(timer); timer = setInterval(()=>move(1), ms); }
+  function reset(){ start(); }
+
+  window.addEventListener('resize', () => {
+    gap = parseFloat(getComputedStyle(track).gap) || gap;
+    update();
+  });
+
+  // ✅ Preload check for both images and videos
+  let loaded = 0;
+  slides.forEach(sl => {
+    const img = sl.querySelector('img');
+    const vid = sl.querySelector('video');
+
+    if (img) {
+      if (img.complete) loaded++;
+      else img.addEventListener('load', () => { loaded++; if (loaded === slides.length) { update(); start(); } });
+    } else if (vid) {
+      if (vid.readyState >= 2) {
+        loaded++;
+      } else {
+        vid.addEventListener('loadeddata', () => { loaded++; if (loaded === slides.length) { update(); start(); } });
+      }
+    } else {
+      loaded++;
+    }
+  });
+
+  if (loaded === slides.length) { update(); start(); }
+})();
+
 
     /********** RSVP Overlay Logic **********/
     const openRsvpBtn = document.getElementById("open-rsvp");

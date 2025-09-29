@@ -641,3 +641,23 @@ footer {
     opacity: 0;
   }
 }
+
+/* Continuous Fade + Scale (Breathing Effect) */
+.hero-content h1,
+.hero-content .date,
+.hero-content .countdown,
+.hero-content .save-date-btn {
+  animation: fadeScaleLoop 6s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes fadeScaleLoop {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;        /* never fully disappears */
+    transform: scale(1.05); /* slight grow */
+  }
+}

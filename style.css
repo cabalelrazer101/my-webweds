@@ -661,3 +661,96 @@ footer {
     transform: scale(1.05); /* slight grow */
   }
 }
+
+
+.rsvp {
+    text-align: center;
+    background: linear-gradient(145deg, #fff9f9, #fff0f5);
+    padding: 4rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    margin: 6rem auto;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Soft floating floral overlay */
+  .rsvp::before {
+    content: "🌸";
+    position: absolute;
+    font-size: 4rem;
+    top: 20px;
+    left: 30px;
+    opacity: 0.15;
+    animation: float1 6s ease-in-out infinite;
+  }
+  .rsvp::after {
+    content: "🌷";
+    position: absolute;
+    font-size: 3.5rem;
+    bottom: 20px;
+    right: 30px;
+    opacity: 0.15;
+    animation: float2 7s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  .rsvp h2 {
+    font-size: 2.8rem;
+    color: #b35d77;
+    margin-bottom: 1rem;
+    animation: fadeIn 1.5s ease-in-out;
+    letter-spacing: 1px;
+  }
+
+  .rsvp p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .rsvp strong {
+    color: #c26a85;
+    font-weight: bold;
+    text-decoration: underline wavy #e6b8c3;
+  }
+
+  .rsvp .deadline {
+    color: #b35d77;
+    font-weight: 600;
+  }
+
+  .rsvp-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    background-color: #b35d77;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 5px 15px rgba(179, 93, 119, 0.3);
+  }
+
+  .rsvp-btn:hover {
+    background-color: #c26a85;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(179, 93, 119, 0.4);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }

@@ -207,12 +207,17 @@
   </footer>
 
 
-  <!-- RSVP "small" section placeholder so anchor still works (optional) -->
-  <section id="rsvp" class="rsvp">
-    <h2>RSVP</h2>
-    <p>Click <strong>RSVP</strong> at the top to respond.</p>
-    <p>Please Respond on or before October 31, 2025</p>
-  </section>
+ <!-- RSVP Section -->
+<section id="rsvp" class="rsvp">
+  <h2>💌 RSVP</h2>
+  
+  <p>
+    Please respond on or before <span class="deadline">October 31, 2025</span>.
+  </p>
+  <button id="rsvp-trigger" class="rsvp-btn">Send Your Response</button>
+</section>
+
+
 
  <!-- Google Maps Section -->
 <section id="map-section" class="map-section">
@@ -572,6 +577,11 @@ function setVideo() {
     video.play().catch(()=>{}); // ignore autoplay restrictions
   }
 }
+
+document.getElementById('rsvp-trigger').addEventListener('click', function() {
+    const openRsvp = document.getElementById('open-rsvp');
+    if (openRsvp) openRsvp.click();
+  });
 
 // Run once on load
 setVideo();
